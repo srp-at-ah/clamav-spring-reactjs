@@ -15,5 +15,8 @@ RUN mkdir /run/clamav && chown clamav:clamav /run/clamav
 COPY etc /etc/
 
 COPY target/*.jar app.jar
+COPY run.sh /opt/run.sh
+RUN chmod +x /opt/run.sh
 EXPOSE 3310/tcp
-CMD ["supervisord", "-c", "/etc/supervisord.conf"]
+
+CMD /opt/run.sh
